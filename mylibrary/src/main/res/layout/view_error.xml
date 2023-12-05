@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_error"
+        android:id="@+id/iv_error"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_retry"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/black"
+        app:cornerRadius="50dp"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:text="重试"/>
+
+    <TextView
+        android:id="@+id/tv_error"
+        android:textColor="@color/black"
+        android:alpha="0.6"
+        android:text="出现了未知的错误"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

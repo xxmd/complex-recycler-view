@@ -1,0 +1,3 @@
+rootProject.name = "complex-recycler-view"
+include ':app'
+include ':mylibrary'
