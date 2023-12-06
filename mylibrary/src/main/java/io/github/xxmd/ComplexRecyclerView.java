@@ -1,12 +1,17 @@
 package io.github.xxmd;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import java.util.function.Consumer;
 
 import io.github.xxmd.databinding.ComplexRecyclerViewBinding;
 
@@ -14,6 +19,7 @@ public class ComplexRecyclerView<T> extends ConstraintLayout {
     private ComplexRecyclerViewBinding binding;
     private RecyclerViewState state;
     private ComplexRecyclerViewListener<T> listener;
+    public static Consumer<ComplexRecyclerViewBinding> globalInit;
 
     public ComplexRecyclerViewListener getListener() {
         return listener;
@@ -21,6 +27,7 @@ public class ComplexRecyclerView<T> extends ConstraintLayout {
 
     public void setListener(ComplexRecyclerViewListener listener) {
         this.listener = listener;
+        loadData();
     }
 
     public RecyclerViewState getState() {
@@ -52,25 +59,45 @@ public class ComplexRecyclerView<T> extends ConstraintLayout {
 
     public ComplexRecyclerView(@NonNull Context context) {
         super(context);
+        init();
     }
 
-    public ComplexRecyclerView(@NonNull Context context, @Nullable @org.jetbrains.annotations.Nullable AttributeSet attrs) {
+    public ComplexRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        init();
     }
 
     private void init() {
-        binding = ComplexRecyclerViewBinding.inflate(LayoutInflater.from(getContext()), this);
-        initView();
+        binding = ComplexRecyclerViewBinding.inflate(LayoutInflater.from(getContext()), this, true);
+        if (globalInit != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                globalInit.accept(binding);
+            }
+        }
+        bindEvent();
     }
 
-    private void initView() {
+    private void bindEvent() {
+        binding.viewError.btnRetry.setOnClickListener(v -> loadData());
+    }
+
+
+    private void loadData() {
         if (listener != null) {
             listener.initRecyclerView(binding.recyclerView);
             setState(RecyclerViewState.LOADING);
-            listener.loadDataAsync(data -> {
-                setState(RecyclerViewState.IDLE);
-                listener.renderData(data);
-            });
+            try {
+                listener.loadDataAsync(data -> {
+                    if (data == null || data.size() == 0) {
+                        setState(RecyclerViewState.EMPTY);
+                    } else {
+                        setState(RecyclerViewState.IDLE);
+                    }
+                    listener.renderData(data);
+                });
+            } catch (Exception e) {
+                setState(RecyclerViewState.ERROR);
+            }
         }
     }
 }

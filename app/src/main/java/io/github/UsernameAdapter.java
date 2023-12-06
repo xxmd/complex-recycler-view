@@ -1,4 +1,4 @@
-package io.github.xxmd;
+package io.github;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,11 +7,21 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import io.github.xxmd.R;
+import java.util.List;
+
+import io.github.R;
 
 public class UsernameAdapter extends RecyclerView.Adapter<UsernameAdapter.ViewHolder> {
 
-    private String[] localDataSet;
+    private List<String> localDataSet;
+
+    public List<String> getLocalDataSet() {
+        return localDataSet;
+    }
+
+    public void setLocalDataSet(List<String> localDataSet) {
+        this.localDataSet = localDataSet;
+    }
 
     /**
      * Provide a reference to the type of views that you are using
@@ -38,7 +48,7 @@ public class UsernameAdapter extends RecyclerView.Adapter<UsernameAdapter.ViewHo
      * @param dataSet String[] containing the data to populate views to be used
      * by RecyclerView.
      */
-    public UsernameAdapter(String[] dataSet) {
+    public UsernameAdapter(List<String> dataSet) {
         localDataSet = dataSet;
     }
 
@@ -58,12 +68,12 @@ public class UsernameAdapter extends RecyclerView.Adapter<UsernameAdapter.ViewHo
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.getTextView().setText(localDataSet[position]);
+        viewHolder.getTextView().setText(localDataSet.get(position));
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return localDataSet.length;
+        return localDataSet.size();
     }
 }

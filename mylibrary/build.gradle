@@ -49,9 +49,9 @@ afterEvaluate {
 // ref from https://github.com/cats-oss/android-gpuimage/blob/master/library/build.gradle
 ext {
     publishedGroupId = 'io.github.xxmd'
-    artifact = 'gpuimage'
-    libraryVersion = '1.0.0'
-    libraryDescription = 'Image filters for Android with OpenGL (based on GPUImage for iOS)'
+    artifact = 'complex-recycler-view'
+    libraryVersion = '1.0.1'
+    libraryDescription = 'Recycler view with Empty View, Loading View and Error View.'
     siteUrl = 'https://github.com/xxmd/' + artifact
 }
 

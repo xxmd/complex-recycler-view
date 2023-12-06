@@ -13,7 +13,7 @@
         android:src="@drawable/ic_error"
         android:id="@+id/iv_error"/>
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/btn_retry"
         android:textColor="@color/white"
         android:backgroundTint="@color/black"
