@@ -58,8 +58,8 @@ public class MainActivity extends AppCompatActivity implements ComplexRecyclerVi
             handler.postDelayed(() -> {
                 usernameArr = new String[]{"James", "John", "Hans", "Tom", "Tony"};
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    onSuccess.accept(Arrays.asList(usernameArr));
-//                    onSuccess.accept(new ArrayList<>());
+//                    onSuccess.accept(Arrays.asList(usernameArr));
+                    onSuccess.accept(new ArrayList<>());
                 }
             }, 1000 * 3);
         } else {

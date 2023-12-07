@@ -50,7 +50,7 @@ afterEvaluate {
 ext {
     publishedGroupId = 'io.github.xxmd'
     artifact = 'complex-recycler-view'
-    libraryVersion = '1.0.2'
+    libraryVersion = '1.0.3'
     libraryDescription = 'Recycler view with Empty View, Loading View and Error View.'
     siteUrl = 'https://github.com/xxmd/' + artifact
 }
