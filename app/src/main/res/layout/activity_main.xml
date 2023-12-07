@@ -4,11 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical">
 
     <io.github.xxmd.ComplexRecyclerView
         android:id="@+id/complex_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/btn_render"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ReRender"/>
 
 </LinearLayout>

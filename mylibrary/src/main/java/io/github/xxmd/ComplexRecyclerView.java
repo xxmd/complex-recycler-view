@@ -27,7 +27,11 @@ public class ComplexRecyclerView<T> extends ConstraintLayout {
 
     public void setListener(ComplexRecyclerViewListener listener) {
         this.listener = listener;
-        loadData();
+
+        if (listener != null) {
+            listener.initRecyclerView(binding.recyclerView);
+            loadData();
+        }
     }
 
     public RecyclerViewState getState() {
@@ -57,6 +61,12 @@ public class ComplexRecyclerView<T> extends ConstraintLayout {
         this.state = state;
     }
 
+    public void reRender() {
+        if (listener != null) {
+            loadData();
+        }
+    }
+
     public ComplexRecyclerView(@NonNull Context context) {
         super(context);
         init();
@@ -83,21 +93,18 @@ public class ComplexRecyclerView<T> extends ConstraintLayout {
 
 
     private void loadData() {
-        if (listener != null) {
-            listener.initRecyclerView(binding.recyclerView);
-            setState(RecyclerViewState.LOADING);
-            try {
-                listener.loadDataAsync(data -> {
-                    if (data == null || data.size() == 0) {
-                        setState(RecyclerViewState.EMPTY);
-                    } else {
-                        setState(RecyclerViewState.IDLE);
-                    }
-                    listener.renderData(data);
-                });
-            } catch (Exception e) {
-                setState(RecyclerViewState.ERROR);
-            }
+        setState(RecyclerViewState.LOADING);
+        try {
+            listener.loadDataAsync(data -> {
+                if (data == null || data.size() == 0) {
+                    setState(RecyclerViewState.EMPTY);
+                } else {
+                    setState(RecyclerViewState.IDLE);
+                }
+                listener.renderData(data);
+            });
+        } catch (Exception e) {
+            setState(RecyclerViewState.ERROR);
         }
     }
 }
