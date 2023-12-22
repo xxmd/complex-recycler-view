@@ -17,6 +17,11 @@ import io.github.xxmd.databinding.ComplexRecyclerViewBinding;
 
 public class ComplexRecyclerView<T> extends ConstraintLayout {
     private ComplexRecyclerViewBinding binding;
+
+    public ComplexRecyclerViewBinding getBinding() {
+        return binding;
+    }
+
     private RecyclerViewState state;
     private ComplexRecyclerViewListener<T> listener;
     public static Consumer<ComplexRecyclerViewBinding> globalInit;
@@ -89,6 +94,7 @@ public class ComplexRecyclerView<T> extends ConstraintLayout {
 
     private void bindEvent() {
         binding.viewError.btnRetry.setOnClickListener(v -> loadData());
+        binding.viewEmpty.btnRetry.setOnClickListener(v -> loadData());
     }
 
 

@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements ComplexRecyclerVi
 
     private void initView() {
         binding.complexRecycler.setListener(this);
+        binding.complexRecycler.getBinding().viewEmpty.tvEmpty.setText("四大皆空");
     }
 
     @Override
@@ -54,18 +55,24 @@ public class MainActivity extends AppCompatActivity implements ComplexRecyclerVi
     @Override
     public void loadDataAsync(Consumer<List<String>> onSuccess) {
         Handler handler = new Handler();
-        if (retryTimes > 0) {
-            handler.postDelayed(() -> {
-                usernameArr = new String[]{"James", "John", "Hans", "Tom", "Tony"};
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//                    onSuccess.accept(Arrays.asList(usernameArr));
-                    onSuccess.accept(new ArrayList<>());
-                }
-            }, 1000 * 3);
-        } else {
-            retryTimes++;
+        if (retryTimes % 3 == 0) {
+            retryTimes = (retryTimes + 1) % 3;
             throw new RuntimeException();
         }
+        handler.postDelayed(() -> {
+            usernameArr = new String[]{"James", "John", "Hans", "Tom", "Tony"};
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                switch (retryTimes) {
+                    case 1:
+                        onSuccess.accept(new ArrayList<>());
+                        break;
+                    case 2:
+                        onSuccess.accept(Arrays.asList(usernameArr));
+                        break;
+                }
+                retryTimes = (retryTimes + 1) % 3;
+            }
+        }, 1000 * 3);
     }
 
     @Override
