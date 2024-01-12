@@ -9,19 +9,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/view_empty"
-        layout="@layout/view_empty" />
+        layout="@layout/crv_view_empty" />
 
     <include
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/view_error"
-        layout="@layout/view_error" />
+        layout="@layout/crv_view_error" />
 
     <include
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/view_loading"
-        layout="@layout/view_loading" />
+        layout="@layout/crv_view_loading" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"

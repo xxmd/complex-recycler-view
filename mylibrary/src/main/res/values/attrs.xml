@@ -1,16 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="ComplexRecyclerView">
+        <attr name="loadingIconVisible" format="boolean"/>
         <attr name="loadingIcon" format="reference"/>
         <attr name="loadingIconTint" format="color"/>
+
+        <attr name="loadingTextVisible" format="boolean"/>
         <attr name="loadingText" format="string"/>
         <attr name="loadingTextColor" format="color"/>
+
+        <attr name="emptyIconVisible" format="boolean"/>
         <attr name="emptyIcon" format="reference"/>
-        <attr name="emptyIconTint" format="reference"/>
+        <attr name="emptyIconTint" format="color"/>
+
+        <attr name="emptyTextVisible" format="boolean"/>
         <attr name="emptyText" format="string"/>
         <attr name="emptyTextColor" format="color"/>
+
+        <attr name="errorIconVisible" format="boolean"/>
         <attr name="errorIcon" format="reference"/>
+        <!--errorIconTint was previously defined in material-->
+        <attr name="errorIconTintColor" format="color"/>
+
+        <attr name="errorTextVisible" format="boolean"/>
         <attr name="errorText" format="string"/>
         <attr name="errorTextColor" format="color"/>
+
+
+        <attr name="retryBtnVisible" format="boolean"/>
+        <attr name="emptyTextMarginTop" format="dimension"/>
     </declare-styleable>
 </resources>

@@ -7,7 +7,6 @@ import android.graphics.PorterDuff;
 import java.util.function.Consumer;
 
 import io.github.xxmd.ComplexRecyclerView;
-import io.github.xxmd.databinding.ComplexRecyclerViewBinding;
 
 public class App extends Application {
     @Override

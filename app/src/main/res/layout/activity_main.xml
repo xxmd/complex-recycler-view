@@ -10,6 +10,8 @@
     <io.github.xxmd.ComplexRecyclerView
         android:id="@+id/complex_recycler"
         android:layout_width="match_parent"
+        app:emptyTextMarginTop="-20dp"
+        app:retryBtnVisible="false"
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
